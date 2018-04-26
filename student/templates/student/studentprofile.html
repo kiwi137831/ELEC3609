@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block content %}
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="{% static "courses/student_style.css" %}" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!--<script type="text/javascript" src="{% static "courses/studentprofile_js.js" %}"></script>-->
+    <script src="{% static "courses/studentprofile_js.js" %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        var id = {{ ids|safe }};
+        var value = {{ subjects|safe }};
+        var my_subject_id = {{ my_subject_id|safe }};
+        var my_subject_name = {{ my_subject_name|safe }};
+        //id refers all the subjects' id
+        //value refers all the subjects' name
+        //my_subject_id refers all the enrolled subjects' id
+        //my_subject_name refers all the enrolled subjects' name
+        function changecolor() {
+            $.ajaxSetup({
+                data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+            });
+
+            $.ajax({
+                url:"/studentprofile/",
+                type:"Post",
+                success:function (arg) {
+                    var x = document.body.style.backgroundColor;
+
+                    document.body.style.backgroundColor = "aliceblue";
+                    if(x == "aliceblue"){
+                        document.body.style.backgroundColor = "aqua";
+                    }
+                    if(x == "aqua"){
+                        document.body.style.backgroundColor = "cadetblue";
+                    }
+                    if(x == "cadetblue"){
+                        document.body.style.backgroundColor = "aliceblue";
+                    }
+                }
+            })
+        }
+
+        </script>
+
+</head>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"> </span>
+            </button>
+            <a class="navbar-brand" href="#">StudyGO</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href = "http://127.0.0.1:8000/homepage">Homepage</a></li>
+                <li class="active"><a href = "http://127.0.0.1:8000/account/logout">Log-out</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+<body>
+
+<p id="profile"> Profile </p>
+
+<p id="userinfo"> User Information </p>
+
+<img id = "usericon" src="{% static "courses/usericon.png" %}" alt="User_Icon"/>
+<!--standard user icon-->
+
+<br>
+<br>
+
+<div class = "student_details">
+    <p class="studentdetails">{{ name }}</p>
+    <p class="studentdetails">{{ sid }}</p>
+</div>
+
+<hr />
+<p id="enrollsubject"> Enroll Subject </p>
+
+<div>
+    <p id="enrollsubjectdetails">Please enroll subject and delete subject in this section, please do not enroll in same subject. Please refresh the page after enroll or delete!</p>
+<form action="" method="post" id="form1">
+    {% csrf_token %}
+    <!--create selection label to allow the JS function to insert more option label-->
+    <!--refers to the setcourses1 function in JS-->
+    <!--create csrf-token to allow POST method-->
+    <label for="setcourses1"></label>
+    <select name="setcourses1" id="setcourses1">
+        <option value="0">Enroll Courses</option>
+    </select>
+    <div align="right">
+        <input onclick="return alertcourses();" type="submit" name = "enroll" value = "Enroll" id="rightButton1">
+        </input>
+    </div>
+</form>
+
+<form action="" method="post" id="form2">
+    {% csrf_token %}
+    <!--create selection label to allow the JS fucntion to insert more option label-->
+    <!--refer to the deletecourse function in JS-->
+    <!--craete csrf-token to allow POST method-->
+    <label for="deletecourses"></label>
+    <select name="deletecourses" id="deletecourses">
+        <option value="0">Delete Courses</option>
+    </select>
+    <div align="right">
+        <input type="submit" name = "delete" value = "Delete" id="rightButton2">
+        </input>
+    </div>
+</form>
+</div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<!--create some empty space-->
+<hr/>
+<p id="changecolor"> Change Color </p>
+
+<div>
+    <!--change color button, related to the AJAX function changecolor-->
+    <!--change the color of the current page-->
+    <button  id="leftButton" onclick = " changecolor()">
+        <p id="changecolordetails">Change Color</p>
+    </button>
+</div>
+
+<br>
+<hr />
+<p id="changecolor"> Change Password </p>
+<div>
+    <!--change password function, related to the back-end database-->
+    <a href="http://127.0.0.1:8000/account/password-change" style="color: #555;"><button id="leftButton">
+        <p id="changepassworddetails">Change Password</p>
+    </button></a>
+</div>
+
+</body>
+</html>
+{% endblock %}

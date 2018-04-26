@@ -1,0 +1,120 @@
+body{
+    color:#555;
+}
+
+.student_details{
+    font-size: 24px;
+    margin: 0px 0px 0px 24px;
+}
+
+#profile{
+    font-size: 40px;
+    margin: 20px 0px 10px 30px;
+}
+
+#userinfo{
+    font-size: 30px;
+    margin: 10px 0px 0px 45px;
+}
+
+div.head_class{
+    border-style: outset !important;
+    margin-top:-10px !important;
+    margin-left:-10px !important;
+    width: 100% !important;
+    height: 55px !important;
+    padding-top: 0px !important;
+}
+
+button.head_button {
+    height: 80% !important;
+    width: 60px !important;
+    margin: 5px !important;
+    float: right;
+}
+
+header.h4 {
+    padding-top: 0px;
+}
+
+div.color_box {
+    float:left !important;
+    height: 100% !important;
+    width: 10px !important;
+    background-color: red !important;
+}
+
+#usericon {
+    width: 68px !important;
+    height: 75px !important;
+    float:left !important;
+    margin: 30px 10px 0px 50px;
+}
+
+div.student_details {
+    """float:left;"""
+}
+
+#setcourses1{
+    float: left;
+    margin-top: 20px;
+    margin-left: 60px;
+    font-size: 20px;
+    width: 200px;
+}
+
+#deletecourses{
+    float: left;
+    margin-top: 0px;
+    margin-left: 30px;
+    font-size: 20px;
+    width: 200px;
+}
+
+#rightButton1{
+    float:left;
+    width: 150px;
+    height: 60px;
+    margin-top: 0px;
+    margin-left: 10px;
+    font-size: 23px;
+}
+
+#rightButton2{
+    float:left;
+    margin-right: 0px;
+    width: 150px;
+    height: 60px;
+    margin-top: -20px;
+    margin-left: 10px;
+    font-size: 23px;
+}
+
+#enrollsubject{
+    margin-left: 20px;
+    font-size: 30px;
+}
+
+#enrollsubjectdetails{
+    margin-left: 20px;
+}
+
+#changecolor{
+    font-size: 30px;
+    margin-left: 20px;
+}
+
+#changecolordetails{
+    font-size: 18px;
+}
+
+#changepassworddetails{
+    font-size: 18px;
+}
+
+#leftButton{
+    margin-left: 50px;
+    width: 150px;
+    height: 60px;
+    font-size: 30px;
+}

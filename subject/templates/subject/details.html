@@ -1,0 +1,109 @@
+{% extends "base_s.html" %}
+
+{% block title %}Question Details{% endblock %}
+    <!--the title of the questions -->
+{% block createQ %}
+    <li><a href="" onclick="new_question();return false">New Question</a></li>
+    {% if request.user.status == "Teacher" %}
+        <li><a href="" onclick="makequiz();return false">Make Quiz</a></li>
+    {% else %}
+        <li><a href="" onclick="doquiz();return false">Do Quiz</a></li>
+    {% endif %}
+{% endblock %}
+    <!--the add the answers for question  -->
+{% block right-content %}
+    <div id="add_answer" style="display: block">
+        <h1>{{ question.Q_title }}</h1>
+        <input type="hidden" id="qid" value={{ question.id }}>
+        <input type="hidden" id="qlike" value={{ question.likes_num }}>
+
+        <button type="button" onclick="likea()" class="btn btn-default"><span class="glyphicon glyphicon-star"
+                                                                              aria-hidden="true"></span>{{ question.likes_num }}
+        </button>
+
+        <!--the display of the question  -->
+        <p class="date">
+            Published {{ question.create }} by {{ question.writer }}
+        </p>
+        {{ question.Q_des|linebreaks }}
+        <hr>
+        {% with answers.count as total_comments %}
+            <h2>
+                {{ total_answers }} answer {{ total_answers|pluralize }}
+            </h2>
+        {% endwith %}
+
+            <!--the display of the answers  -->
+        {% for answer in answers %}
+            <div class="answer" style="display: block">
+                <p class="info">{{ answer.A_date }}
+                    Answer {{ forloop.counter }}
+                </p>
+                {{ answer.content|linebreaks }}
+                <hr>
+            </div>
+        {% empty %}
+            <p>There are no answers yet.</p>
+        {% endfor %}
+        {% if new_answer %}
+            <h2>Your answer has been added.</h2>
+        {% else %}
+            <h2>Add a new answer :</h2>
+            <form method='POST' action=''>{% csrf_token %}
+                {{ Aform.as_p }}
+                <button type="submit" class="btn btn-default navbar-btn" onsubmit="return checkSubmit();">Submit
+                </button>
+            </form>
+
+
+        {% endif %}
+    </div>
+    <!-- create new question -->
+    <div id="create_question" style='display: none'>
+
+        <form method='POST' action=''>{% csrf_token %}
+
+
+            <h2>Create New Question</h2>
+
+            <hr>
+            {{ Qform.as_p }}
+            <button id="newquestion" type="submit" onclick="" class="btn btn-default navbar-btn">Create</button>
+        </form>
+
+    </div>
+
+
+{% endblock %}
+
+
+{% block left-content %}
+        <!--the list of  questions -->
+    <input id="course_id" type="hidden" value={{ course.subject_id}}>
+
+    <h2> My Question</h2>s
+    <hr>
+
+
+    <hr>
+    <div id="question">
+        {% for question in questions %}
+            <h2>
+
+                <a href="{% url 'question:question_detail' subid=course.subject_id qid=question.id %}">{{ question.Q_title }}</a>
+
+            </h2>
+
+            <p class="date">
+                Pulished {{ question.create }} by {{ question.writer }}
+            </p>
+            {{ question.Q_des|truncatewords:30|linebreaks }}
+            <hr>
+
+        {% endfor %}
+
+    </div>
+    {% include "pager.html" with page=questions %}
+
+
+{% endblock %}

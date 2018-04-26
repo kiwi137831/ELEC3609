@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}News{% endblock %}
+{% block content %}
+<html>
+ <head>
+     <head><link href="/static/stylesheet/news.css" rel="stylesheet"></head>
+   <meta charset="utf-8">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+     </head>
+ <body>
+ <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"> </span>
+            </button>
+            <a class="navbar-brand" href="#">StudyGO</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href = "http://127.0.0.1:8000/homepage">Homepage</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</nav>
+
+{% for news in news_list%}
+   <ul>
+
+    <h1>{{ news.news_title }}</h1>
+       <div id = "news_title_{{ forloop.counter }}">
+           <p>{{ news.news_context }}</p>
+           <br>
+           <div class = "date">{{ news.news_date }}</div>
+           </div>
+           <div class = "bt"><button id="button0_{{forloop.counter }}" type="button" onclick="hide(this.id)">Hide</button>
+               <button id="button1_{{forloop.counter }}" type="button" onclick="show(this.id)">Show</button></div>
+
+
+   </ul>
+{% endfor %}
+
+    <script>
+        function  hide(id) {
+            var _id=id.split("_")[1];
+            _id="#news_title_"+_id;
+            $(_id).hide();
+        }
+        function  show(id) {
+            var _id=id.split("_")[1];
+            _id="#news_title_"+_id;
+            $(_id).show();
+        }
+
+ </script>
+</body>
+</html>
+{% endblock %}

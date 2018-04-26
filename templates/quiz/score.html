@@ -1,0 +1,29 @@
+{%  load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/score.css' %}"/>
+    <title>score</title>
+</head>
+<body>
+<h2>Score: You achieved {{ correct_count }} out of {{ total_order }} </h2>
+    {% for key, value in answer_list.items %}
+        <div>
+        <h3>Question: {{ key }}</h3>
+        <div id="{{ forloop.counter }}_1"></div>
+        <div id="{{ forloop.counter }}_2"></div>
+        <script>
+            var wrong = document.getElementById("{{ forloop.counter }}_1");
+            wrong.textContent = "wrong: "+"{{ value }}".split("_")[0];
+            wrong.style.color = "Red"
+            var correct = document.getElementById("{{ forloop.counter }}_2");
+            correct.textContent = "correct: "+"{{ value }}".split("_")[1];
+            correct.style.color = "Green"
+        </script>
+        </div>
+        <br>
+    {% endfor %}
+<a href="http://127.0.0.1:8000/homepage"><button>Back to Homepage</button></a>
+</body>
+</html>

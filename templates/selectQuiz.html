@@ -1,0 +1,24 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/select_quiz.css' %}"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>Select Quiz</title>
+    <script type="text/javascript" src='{% static "js/selectquiz.js" %} ' }></script>
+</head>
+<body>
+<h2>Quiz</h2>
+{% for line in all_quiz %}
+    <div>Quiz {{ forloop.counter }}
+        <form action="/quiz" method="post">
+            <input type="hidden" name="quizNo" value="{{ line.quizNo }}">
+            <input type="submit" name='submit' value="start the quiz">
+        </form>
+    </div>
+    <br>
+{% endfor %}
+
+</body>
+</html>

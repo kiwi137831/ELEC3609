@@ -1,0 +1,48 @@
+{% extends "base_s.html" %}
+{% block createQ %}
+    <!--the title of the questions -->
+    <li><a href="" onclick="new_questionb();return false">New Question</a></li>
+    {% if request.user.status == "Teacher" %}
+        <li><a href="" onclick="makequiz();return false">Make Quiz</a></li>
+    {% else %}
+        <li><a href="" onclick="doquiz();return false">Do Quiz</a></li>
+    {% endif %}
+{% endblock %}
+
+{% block title %} My Question{% endblock %}
+
+{% block left-content %}
+    <!--the list of  questions -->
+    <h2> My Question</h2>
+    <hr>
+
+    <input id="course_id" type="hidden" value={{ course.subject_id }}>
+    {% for question in questions %}
+        <h2>
+            <a href="{% url 'question:question_list' subid=course.subject_id %}/{{ question.id }}">{{ question.Q_title }}</a>
+        </h2>
+        <p class="date">
+            Pulished {{ question.create }} by {{ question.writer }}
+        </p>
+        {{ question.Q_des|truncatewords:30|linebreaks }}
+        <hr>
+
+    {% endfor %}
+
+
+    {% include "pager.html" with page=questions %}
+
+{% endblock %}
+{% block right-content %}
+    <!-- create new question -->
+    <div id="create_question1" style='display: none'>
+        <form method='POST' action=''>{% csrf_token %}
+            <h2>Create New Question</h2>
+            <hr>
+            {{ Qform.as_p }}
+
+            <button type="submit" class="btn btn-default navbar-btn">Create</button>
+        </form>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+<head>
+    <title>Add answer | Django site admin</title>
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css"/>
+
+
+    <script type="text/javascript" src="/admin/jsi18n/"></script>
+    <script type="text/javascript" src="/static/admin/js/core.js"></script>
+    <script type="text/javascript" src="/static/admin/js/vendor/jquery/jquery.js"></script>
+    <script type="text/javascript" src="/static/admin/js/jquery.init.js"></script>
+    <script type="text/javascript" src="/static/admin/js/admin/RelatedObjectLookups.js"></script>
+    <script type="text/javascript" src="/static/admin/js/actions.js"></script>
+    <script type="text/javascript" src="/static/admin/js/urlify.js"></script>
+    <script type="text/javascript" src="/static/admin/js/prepopulate.js"></script>
+    <script type="text/javascript" src="/static/admin/js/vendor/xregexp/xregexp.js"></script>
+
+    <meta name="robots" content="NONE,NOARCHIVE"/>
+</head>
+
+
+<body class=" app-subject model-answer change-form"
+      data-admin-utc-offset="39600">
+
+<!-- Container -->
+<div id="container">
+
+
+    <!-- Header -->
+    <div id="header">
+        <div id="branding">
+
+            <h1 id="site-name"><a href="/admin/">Django administration</a></h1>
+
+        </div>
+
+
+        <div id="user-tools">
+
+            Welcome,
+            <strong>a</strong>.
+
+
+            <a href="/">View site</a> /
+
+
+            <a href="/admin/password_change/">Change password</a> /
+
+            <a href="/admin/logout/">Log out</a>
+
+        </div>
+
+
+    </div>
+    <!-- END Header -->
+
+    <div class="breadcrumbs">
+        <a href="/admin/">Home</a>
+        &rsaquo; <a href="/admin/subject/">Subject</a>
+        &rsaquo; <a href="/admin/subject/answer/">Answers</a>
+        &rsaquo; Add answer
+    </div>
+
+
+    <!-- Content -->
+    <div id="content" class="colM">
+
+        <h1>Add answer</h1>
+        <div id="content-main">
+
+
+            <form enctype="multipart/form-data" action="" method="post" id="answer_form" novalidate><input type='hidden'
+                                                                                                           name='csrfmiddlewaretoken'
+                                                                                                           value='3IGHnKzd5ZPSGjyHOSpbBKjfSsBMEoki'/>
+                <div>
+
+
+                    <fieldset class="module aligned ">
+
+
+                        <div class="form-row field-ans">
+
+
+                            <div>
+
+
+                                <label class="required" for="id_ans">Ans:</label>
+
+
+                                <div class="related-widget-wrapper">
+                                    <select id="id_ans" name="ans">
+                                        <option value="" selected="selected">---------</option>
+                                        <option value="1">why?</option>
+                                    </select>
+
+
+                                    <a class="related-widget-wrapper-link change-related" id="change_id_ans"
+                                       data-href-template="/admin/subject/question/__fk__/change/?_to_field=id&amp;_popup=1"
+                                       title="Change selected question">
+                                        <img src="/static/admin/img/icon-changelink.svg" alt="Change"/>
+                                    </a>
+
+
+                                    <a class="related-widget-wrapper-link add-related" id="add_id_ans"
+                                       href="/admin/subject/question/add/?_to_field=id&amp;_popup=1"
+                                       title="Add another question">
+                                        <img src="/static/admin/img/icon-addlink.svg" alt="Add"/>
+                                    </a>
+
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+                        <div class="form-row field-name">
+
+
+                            <div>
+
+
+                                <label class="required" for="id_name">Name:</label>
+
+                                <input class="vTextField" id="id_name" maxlength="50" name="name" type="text"/>
+
+
+                            </div>
+
+                        </div>
+
+                        <div class="form-row field-content">
+
+
+                            <div>
+
+
+                                <label class="required" for="id_content">Content:</label>
+
+                                <textarea class="vLargeTextField" cols="40" id="id_content" name="content" rows="10">
+</textarea>
+
+
+                            </div>
+
+                        </div>
+
+                        <div class="form-row field-allow">
+
+
+                            <div class="checkbox-row">
+
+
+                                <input checked="checked" id="id_allow" name="allow" type="checkbox"/><label
+                                    class="vCheckboxLabel" for="id_allow">Allow</label>
+
+
+                            </div>
+
+                        </div>
+
+                    </fieldset>
+
+
+                    <div class="submit-row">
+                        <input type="submit" value="Save" class="default" name="_save"/>
+
+
+                        <input type="submit" value="Save and add another" name="_addanother"/>
+                        <input type="submit" value="Save and continue editing" name="_continue"/>
+                    </div>
+
+
+                    <script type="text/javascript">
+                        (function ($) {
+                            $(document).ready(function () {
+                                $('.add-another').click(function (e) {
+                                    e.preventDefault();
+                                    var event = $.Event('django:add-another-related');
+                                    $(this).trigger(event);
+                                    if (!event.isDefaultPrevented()) {
+                                        showAddAnotherPopup(this);
+                                    }
+                                });
+
+
+                                $('form#answer_form :input:visible:enabled:first').focus()
+
+                            });
+                        })(django.jQuery);
+                    </script>
+
+
+                    <script type="text/javascript">
+                        (function ($) {
+                            var field;
+
+
+                        })(django.jQuery);
+                    </script>
+
+
+                </div>
+            </form>
+        </div>
+
+
+        <br class="clear"/>
+    </div>
+    <!-- END Content -->
+
+    <div id="footer"></div>
+</div>
+<!-- END Container -->
+
+</body>
+</html>

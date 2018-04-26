@@ -1,0 +1,25 @@
+h1{
+    font-family: 'Georgia', sans-serif;
+    font-weight:normal;
+    border-bottom: 3px solid #761c19;
+    padding: 30px;
+    margin: auto;
+    font-size: 25px;
+    text-align: center;
+    font-style: inherit;
+    font-weight: bold;
+}
+p{
+    margin:auto;
+    padding: 100px 400px 100px 400px;
+    font-size: 20px;
+}
+html{
+    background :#9acfea ;
+}
+.date{
+    margin: 20px 0px 20px 900px
+}
+.bt{
+    margin: 20px 0px 20px 900px
+}

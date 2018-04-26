@@ -1,0 +1,32 @@
+{%  load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/quiz.css' %}"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>Quiz</title>
+</head>
+<body>
+    <h2>Start of the quiz</h2>
+    <div>
+    <form action="/submit_answers" method="post">
+    {% for line in data %}
+
+        <p>Question: {{ line.description }}</p>
+            <input type="radio" name={{ line.order }} value=1 required=true>{{ line.firstAnswer }}
+            <br>
+            <input type="radio" name={{ line.order }} value=2 >{{ line.secondAnswer }}
+            <br>
+            <input type="radio" name={{ line.order }} value=3>{{ line.thirdAnswer }}
+            <br>
+            <input type="radio" name={{ line.order }} value=4>{{ line.fourthAnswer }}
+
+            <br>
+    {% endfor %}
+            <input type="hidden" name="quizNo" value={{ quizNo }}>
+            <input type="submit", value="submit"/>
+    </form>
+    </div>
+</body>
+</html>

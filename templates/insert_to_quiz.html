@@ -1,0 +1,46 @@
+{%  load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/insert_to_quiz.css' %}"/>
+    <title>Insert to the quiz</title>
+</head>
+<body>
+    <h2>Details of question to add</h2>
+    <form action="/insert" method="post">
+        <input type="hidden" name="courseNo" value={{ courseNo }}>
+        <p>Question ID: {{ new_id }}</p>
+        <input type="hidden" name="id" value = "{{ new_id }}">
+        <br>
+        <p>QuizNo: {{ quizNo }}</p>
+        <input type="hidden" name="quizNo" value="{{ quizNo }}">
+        <br>
+        <p>Question No: {{ new_order }}</p>
+        <input type="hidden" name="order" value="{{ new_order }}">
+        <br>
+        <p>Description</p>
+        <input type="text" name="description" required=true>
+        <br>
+        <p>First Answer</p>
+        <input type="text" name="firstAnswer" required=true>
+        <br>
+        <p>Second Answer</p>
+        <input type="text" name="secondAnswer" required=true>
+        <br>
+        <p>Third Answer</p>
+        <input type="text" name="thirdAnswer" required=true>
+        <br>
+        <p>Fourth Answer</p>
+        <input type="text" name="fourthAnswer" required=true>
+        <br>
+        <p>Correct Answer</p>
+        <input type="radio" name="correctAnswer" value=1 required=true> First Answer
+        <input type="radio" name="correctAnswer" value=2> Second Answer
+        <input type="radio" name="correctAnswer" value=3> Third Answer
+        <input type="radio" name="correctAnswer" value=4> Fourth Andswer
+        <br>
+        <input type="submit" value="add">
+    </form>
+</body>
+</html>

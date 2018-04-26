@@ -1,0 +1,22 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/select_quiz.css' %}"/>
+    <title>Select Quiz</title>
+</head>
+<body>
+<h2>Quiz</h2>
+{% for line in all_quiz %}
+    <div>Quiz {{ forloop.counter }}
+        <form action="/quiz" method="post">
+            <input type="hidden" name="quizNo" value="{{ line.quizNo }}">
+            <input type="submit" name='submit' value="start the quiz">
+        </form>
+    </div>
+    <br>
+{% endfor %}
+
+</body>
+</html>
